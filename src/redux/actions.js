@@ -9,9 +9,9 @@ const addContact = createAction('phoneBook/addContact', (name, number) => ({
   },
 }));
 
-const deleteContact = createAction('phonebook/deleteContact');
+const deleteContact = createAction('phoneBook/deleteContact');
 
-const filterContacts = createAction('phonebook/filterContacts');
+const filterContacts = createAction('phoneBook/filterContacts');
 
 const actions = {
   addContact,
