@@ -20,3 +20,11 @@ const contactsReducer = createReducer(initState, {
     return result;
   },
 });
+
+// const filterReducer = createReducer('', {
+//   [actions.filterContacts]: (state, action) => {
+//     return state.filter(({ name }) =>
+//       name.toLowerCase().includes(filter.toLowerCase()),
+//     );
+//   },
+// });
