@@ -1,7 +1,12 @@
+import { useDispatch } from 'react-redux';
+
 import ContactListItem from './ContactListItem';
 import s from './ContactList.module.scss';
+import actions from '../../redux/actions';
 
-function ContactList({ contacts, onDeleteHandler }) {
+function ContactList({ contacts }) {
+  const dispatch = useDispatch();
+
   return (
     contacts.length > 0 && (
       <ul className={s.list}>
@@ -10,7 +15,7 @@ function ContactList({ contacts, onDeleteHandler }) {
             <ContactListItem
               info={{ name, number }}
               key={id}
-              onDeleteHandler={() => onDeleteHandler(id)}
+              onDeleteHandler={() => dispatch(actions.deleteContact(id))}
             />
           );
         })}

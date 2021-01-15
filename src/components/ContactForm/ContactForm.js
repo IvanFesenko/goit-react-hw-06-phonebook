@@ -1,12 +1,20 @@
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import actions from '../../redux/actions';
 
 import s from './ContactForm.module.css';
 
-function ContactForm({ onAddContact }) {
+function ContactForm() {
   const { register, handleSubmit, errors } = useForm();
+  const dispatch = useDispatch();
 
   return (
-    <form onSubmit={handleSubmit(onAddContact)} className={s.form}>
+    <form
+      onSubmit={handleSubmit(({ name, number }) =>
+        dispatch(actions.addContact(name, number)),
+      )}
+      className={s.form}
+    >
       <label htmlFor="formName">
         Name {errors.name && ' is required.'}
         <input
