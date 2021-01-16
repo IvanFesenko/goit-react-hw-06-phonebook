@@ -11,7 +11,6 @@ const initState = getFromLocalStorage();
 
 const contactsReducer = createReducer(initState, {
   [actions.addContact]: (state, action) => {
-    console.log(state, action);
     const result = sortContactList([...state, action.payload]);
     setToLocalStorage(result);
     return result;

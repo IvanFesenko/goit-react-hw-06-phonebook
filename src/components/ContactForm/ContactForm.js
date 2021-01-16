@@ -1,20 +1,26 @@
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import actions from '../../redux/actions';
+import { getContacts } from '../../redux/selectors';
+import isUniqueContact from '../../services/isUniqueContact';
 
 import s from './ContactForm.module.css';
 
 function ContactForm() {
   const { register, handleSubmit, errors } = useForm();
   const dispatch = useDispatch();
+  const contacts = useSelector(getContacts);
+
+  const onSubmit = ({ name, number }) => {
+    if (isUniqueContact(contacts, name)) {
+      dispatch(actions.addContact(name, number));
+    } else {
+      alert(`${name} is already in contacts`);
+    }
+  };
 
   return (
-    <form
-      onSubmit={handleSubmit(({ name, number }) =>
-        dispatch(actions.addContact(name, number)),
-      )}
-      className={s.form}
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className={s.form}>
       <label htmlFor="formName">
         Name {errors.name && ' is required.'}
         <input
