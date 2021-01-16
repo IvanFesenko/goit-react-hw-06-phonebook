@@ -12,9 +12,7 @@ const addContact = createAction('phoneBook/addContact', (name, number) => ({
 const deleteContact = createAction('phoneBook/deleteContact');
 
 const filterContacts = createAction('phoneBook/filterContacts', filter => ({
-  payload: {
-    filter,
-  },
+  payload: filter,
 }));
 
 const actions = {
